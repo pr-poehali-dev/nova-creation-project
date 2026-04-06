@@ -9,34 +9,34 @@ const products = [
     category: 'ФУТБОЛКИ',
     code: 'T-SHIRT',
     items: [
-      { name: 'ФУТБОЛКА_MT_CLASSIC', desc: 'Классическая белая футболка с принтом MT', price: '1 200 ₽', num: '0001' },
-      { name: 'ФУТБОЛКА_MT_BLACK', desc: 'Чёрная футболка с крупным принтом MT', price: '1 200 ₽', num: '0002' },
-      { name: 'ФУТБОЛКА_MT_OVERSIZED', desc: 'Оверсайз крой, принт MT на груди', price: '1 500 ₽', num: '0003' },
+      { name: 'ФУТБОЛКА_MT_CLASSIC', desc: 'Классическая белая футболка с принтом MT', price: '1 200 ₽', num: '0001', img: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop' },
+      { name: 'ФУТБОЛКА_MT_BLACK', desc: 'Чёрная футболка с крупным принтом MT', price: '1 200 ₽', num: '0002', img: 'https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=400&h=400&fit=crop' },
+      { name: 'ФУТБОЛКА_MT_OVERSIZED', desc: 'Оверсайз крой, принт MT на груди', price: '1 500 ₽', num: '0003', img: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=400&h=400&fit=crop' },
     ]
   },
   {
     category: 'ШОРТЫ',
     code: 'SHORTS',
     items: [
-      { name: 'ШОРТЫ_MT_SUMMER', desc: 'Летние шорты с вышивкой MT на боку', price: '1 400 ₽', num: '0004' },
-      { name: 'ШОРТЫ_MT_SPORT', desc: 'Спортивные шорты с принтом MT', price: '1 300 ₽', num: '0005' },
+      { name: 'ШОРТЫ_MT_SUMMER', desc: 'Летние шорты с вышивкой MT на боку', price: '1 400 ₽', num: '0004', img: 'https://images.unsplash.com/photo-1591195853828-11db59a44f43?w=400&h=400&fit=crop' },
+      { name: 'ШОРТЫ_MT_SPORT', desc: 'Спортивные шорты с принтом MT', price: '1 300 ₽', num: '0005', img: 'https://images.unsplash.com/photo-1562183241-b937e95585b6?w=400&h=400&fit=crop' },
     ]
   },
   {
     category: 'ШТАНЫ',
     code: 'PANTS',
     items: [
-      { name: 'ШТАНЫ_MT_JOGGER', desc: 'Джоггеры с логотипом MT на кармане', price: '2 200 ₽', num: '0006' },
-      { name: 'ШТАНЫ_MT_WIDE', desc: 'Широкие штаны с надписью MT на штанине', price: '2 500 ₽', num: '0007' },
+      { name: 'ШТАНЫ_MT_JOGGER', desc: 'Джоггеры с логотипом MT на кармане', price: '2 200 ₽', num: '0006', img: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=400&h=400&fit=crop' },
+      { name: 'ШТАНЫ_MT_WIDE', desc: 'Широкие штаны с надписью MT на штанине', price: '2 500 ₽', num: '0007', img: 'https://images.unsplash.com/photo-1542272454315-4c01d7abdf4a?w=400&h=400&fit=crop' },
     ]
   },
   {
     category: 'ХУДИ',
     code: 'HOODIE',
     items: [
-      { name: 'ХУДИ_MT_CLASSIC', desc: 'Классическое худи с большим принтом MT', price: '3 200 ₽', num: '0008' },
-      { name: 'ХУДИ_MT_ZIP', desc: 'Худи на молнии с вышивкой MT', price: '3 500 ₽', num: '0009' },
-      { name: 'ХУДИ_MT_OVERSIZE', desc: 'Оверсайз худи, принт MT на спине', price: '3 800 ₽', num: '0010' },
+      { name: 'ХУДИ_MT_CLASSIC', desc: 'Классическое худи с большим принтом MT', price: '3 200 ₽', num: '0008', img: 'https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=400&h=400&fit=crop' },
+      { name: 'ХУДИ_MT_ZIP', desc: 'Худи на молнии с вышивкой MT', price: '3 500 ₽', num: '0009', img: 'https://images.unsplash.com/photo-1509942774463-acf339cf87d5?w=400&h=400&fit=crop' },
+      { name: 'ХУДИ_MT_OVERSIZE', desc: 'Оверсайз худи, принт MT на спине', price: '3 800 ₽', num: '0010', img: 'https://images.unsplash.com/photo-1605518216938-7c31b7b14ad0?w=400&h=400&fit=crop' },
     ]
   },
 ]
@@ -255,7 +255,7 @@ export default function Index() {
   )
 }
 
-function ProductGrid({ items }: { items: typeof products[0]['items'] }) {
+function ProductGrid({ items }: { items: (typeof products[0]['items'][0])[] }) {
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {items.map((item) => (
@@ -265,7 +265,7 @@ function ProductGrid({ items }: { items: typeof products[0]['items'] }) {
   )
 }
 
-function ProductCard({ item }: { item: { name: string; desc: string; price: string; num: string } }) {
+function ProductCard({ item }: { item: { name: string; desc: string; price: string; num: string; img: string } }) {
   return (
     <Card className="border-2 border-primary/40 overflow-hidden bg-card vintage-card">
       {/* Top holes */}
@@ -278,9 +278,15 @@ function ProductCard({ item }: { item: { name: string; desc: string; price: stri
         <span className="text-xs font-mono text-muted-foreground ml-auto">#{item.num}</span>
       </div>
 
-      {/* MT Logo block */}
-      <div className="bg-primary/10 border-b border-primary/20 flex items-center justify-center py-8">
-        <div className="text-5xl font-black tracking-widest text-primary/80 border-4 border-primary/40 px-6 py-2">
+      {/* Product photo */}
+      <div className="relative border-b border-primary/20 overflow-hidden" style={{ height: '220px' }}>
+        <img
+          src={item.img}
+          alt={item.name}
+          className="w-full h-full object-cover"
+          style={{ filter: 'sepia(15%) contrast(1.05)' }}
+        />
+        <div className="absolute top-2 right-2 bg-primary text-primary-foreground text-xs font-black px-2 py-0.5 font-mono">
           MT
         </div>
       </div>

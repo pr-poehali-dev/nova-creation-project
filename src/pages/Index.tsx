@@ -42,8 +42,43 @@ const products = [
 ]
 
 export default function Index() {
+  const bgIcons = [
+    { emoji: '👕', top: '5%',  left: '3%',  rot: -15, size: 32, op: 0.18 },
+    { emoji: '👖', top: '12%', left: '88%', rot: 20,  size: 28, op: 0.15 },
+    { emoji: '🧥', top: '22%', left: '7%',  rot: 10,  size: 36, op: 0.12 },
+    { emoji: '🩳', top: '30%', left: '93%', rot: -8,  size: 30, op: 0.17 },
+    { emoji: '👔', top: '42%', left: '1%',  rot: 18,  size: 34, op: 0.14 },
+    { emoji: '🧤', top: '55%', left: '95%', rot: -20, size: 26, op: 0.13 },
+    { emoji: '👗', top: '65%', left: '5%',  rot: -12, size: 38, op: 0.12 },
+    { emoji: '🧣', top: '72%', left: '90%', rot: 14,  size: 28, op: 0.16 },
+    { emoji: '🩴', top: '80%', left: '2%',  rot: 8,   size: 30, op: 0.14 },
+    { emoji: '👟', top: '88%', left: '92%', rot: -18, size: 32, op: 0.15 },
+    { emoji: '🎽', top: '18%', left: '50%', rot: 25,  size: 24, op: 0.10 },
+    { emoji: '🧢', top: '50%', left: '48%', rot: -10, size: 26, op: 0.09 },
+    { emoji: '👒', top: '35%', left: '75%', rot: 12,  size: 30, op: 0.11 },
+    { emoji: '🥾', top: '75%', left: '55%', rot: -22, size: 28, op: 0.10 },
+  ]
+
   return (
     <div className="min-h-screen bg-background punch-card-holes relative overflow-hidden">
+      {/* Clothing background icons */}
+      {bgIcons.map((ic, i) => (
+        <div
+          key={i}
+          className="absolute pointer-events-none select-none"
+          style={{
+            top: ic.top,
+            left: ic.left,
+            transform: `rotate(${ic.rot}deg)`,
+            fontSize: ic.size,
+            opacity: ic.op,
+            zIndex: 0,
+          }}
+        >
+          {ic.emoji}
+        </div>
+      ))}
+
       <div className="absolute top-20 left-10 opacity-60 pointer-events-none">
         <PaperTape length={15} rotation={-12} />
       </div>

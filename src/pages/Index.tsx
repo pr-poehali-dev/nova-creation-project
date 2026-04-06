@@ -255,12 +255,12 @@ export default function Index() {
                   <Icon name="Users" size={16} />
                   <span className="text-muted-foreground">ВК:</span>
                   <a
-                    href="https://vk.com/id475497457"
+                    href="https://vk.com/a1ekey"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-bold hover:underline"
                   >
-                    vk.com/id475497457
+                    vk.com/a1ekey
                   </a>
                 </div>
                 <div className="mt-4 pt-4 border-t border-border text-muted-foreground text-xs">

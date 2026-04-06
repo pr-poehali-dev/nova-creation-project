@@ -1,7 +1,45 @@
-import { PunchCard } from '@/components/punch-card'
-import { PunchCardGrid } from '@/components/punch-card-grid'
 import { PaperTape } from '@/components/paper-tape'
 import { Card } from '@/components/ui/card'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Badge } from '@/components/ui/badge'
+import Icon from '@/components/ui/icon'
+
+const products = [
+  {
+    category: 'ФУТБОЛКИ',
+    code: 'T-SHIRT',
+    items: [
+      { name: 'ФУТБОЛКА_MT_CLASSIC', desc: 'Классическая белая футболка с принтом MT', price: '1 200 ₽', num: '0001' },
+      { name: 'ФУТБОЛКА_MT_BLACK', desc: 'Чёрная футболка с крупным принтом MT', price: '1 200 ₽', num: '0002' },
+      { name: 'ФУТБОЛКА_MT_OVERSIZED', desc: 'Оверсайз крой, принт MT на груди', price: '1 500 ₽', num: '0003' },
+    ]
+  },
+  {
+    category: 'ШОРТЫ',
+    code: 'SHORTS',
+    items: [
+      { name: 'ШОРТЫ_MT_SUMMER', desc: 'Летние шорты с вышивкой MT на боку', price: '1 400 ₽', num: '0004' },
+      { name: 'ШОРТЫ_MT_SPORT', desc: 'Спортивные шорты с принтом MT', price: '1 300 ₽', num: '0005' },
+    ]
+  },
+  {
+    category: 'ШТАНЫ',
+    code: 'PANTS',
+    items: [
+      { name: 'ШТАНЫ_MT_JOGGER', desc: 'Джоггеры с логотипом MT на кармане', price: '2 200 ₽', num: '0006' },
+      { name: 'ШТАНЫ_MT_WIDE', desc: 'Широкие штаны с надписью MT на штанине', price: '2 500 ₽', num: '0007' },
+    ]
+  },
+  {
+    category: 'ХУДИ',
+    code: 'HOODIE',
+    items: [
+      { name: 'ХУДИ_MT_CLASSIC', desc: 'Классическое худи с большим принтом MT', price: '3 200 ₽', num: '0008' },
+      { name: 'ХУДИ_MT_ZIP', desc: 'Худи на молнии с вышивкой MT', price: '3 500 ₽', num: '0009' },
+      { name: 'ХУДИ_MT_OVERSIZE', desc: 'Оверсайз худи, принт MT на спине', price: '3 800 ₽', num: '0010' },
+    ]
+  },
+]
 
 export default function Index() {
   return (
@@ -19,7 +57,7 @@ export default function Index() {
         <PaperTape length={12} rotation={15} />
       </div>
 
-      {/* Header with punch card edge holes */}
+      {/* Header */}
       <header className="border-b-4 border-primary/30 card-edge-holes py-8 px-4 relative z-10">
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center gap-3 mb-2">
@@ -29,18 +67,19 @@ export default function Index() {
               ))}
             </div>
             <h1 className="text-4xl font-bold tracking-tight">
-              RETRO_COMPUTE
+              MASTER_OF_THE_TABLE
             </h1>
           </div>
           <p className="text-muted-foreground font-mono text-sm">
-            {'>'} ВИРТУАЛЬНЫЙ_МУЗЕЙ_ПЕРФОКАРТ_V2.0
+            {'>'} ОДЕЖДА_С_ПРИНТОМ_MT // ОФИЦИАЛЬНЫЙ_МАГАЗИН_V1.0
           </p>
         </div>
       </header>
 
       <main className="max-w-5xl mx-auto px-4 py-12 relative z-10">
-        {/* Welcome Section */}
-        <section className="mb-16">
+
+        {/* Hero Section */}
+        <section className="mb-12">
           <Card className="border-2 border-primary/40 card-edge-holes p-8 bg-card/80 backdrop-blur-sm">
             <div className="flex gap-2 mb-4">
               {[...Array(5)].map((_, i) => (
@@ -48,87 +87,223 @@ export default function Index() {
               ))}
             </div>
             <h2 className="text-2xl font-bold mb-4 tracking-wide">
-              {'>'} ДОБРО_ПОЖАЛОВАТЬ_В_МУЗЕЙ
+              {'>'} ДОБРО_ПОЖАЛОВАТЬ_В_MT
             </h2>
             <p className="text-foreground/90 leading-relaxed mb-4">
-              Погружение в золотую эпоху вычислительной техники.
-              Каждая карта — строка кода, фрагмент данных или команда,
-              ожидающая выполнения. Где каждый бит имеет вес.
+              Одежда с фирменным принтом MT — для тех, кто знает, что носит.
+              Каждая вещь — отдельный манифест стиля.
             </p>
             <div className="grid grid-cols-3 gap-4 mt-6 font-mono text-xs">
               <div className="border border-border p-3 bg-muted/50">
                 <div className="font-bold mb-1">СТАТУС:</div>
-                <div className="text-green-700 dark:text-green-400">АКТИВНО</div>
+                <div className="text-green-700 dark:text-green-400">РАБОТАЕМ</div>
               </div>
               <div className="border border-border p-3 bg-muted/50">
-                <div className="font-bold mb-1">КАРТ_В_АРХИВЕ:</div>
-                <div>12 847</div>
+                <div className="font-bold mb-1">ПОЗИЦИЙ:</div>
+                <div>10 ТОВАРОВ</div>
               </div>
               <div className="border border-border p-3 bg-muted/50">
-                <div className="font-bold mb-1">ЭПОХА:</div>
-                <div>1950-1985</div>
+                <div className="font-bold mb-1">БРЕНД:</div>
+                <div>MT_OFFICIAL</div>
               </div>
             </div>
           </Card>
         </section>
 
-        {/* Punch Card Grid Display */}
-        <section className="mb-16">
-          <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-            <div className="flex gap-1">
-              {[...Array(4)].map((_, i) => (
-                <div key={i} className="w-2 h-2 punch-hole" />
-              ))}
-            </div>
-            КАРТЫ_ДАННЫХ
-          </h2>
-          <PunchCardGrid />
-        </section>
+        {/* Navigation Tabs */}
+        <Tabs defaultValue="all" className="mb-16">
+          <TabsList className="flex flex-wrap gap-1 h-auto bg-muted/60 border-2 border-primary/30 p-1 mb-6">
+            <TabsTrigger value="all" className="font-mono text-xs">ВСЕ_ТОВАРЫ</TabsTrigger>
+            <TabsTrigger value="tshirts" className="font-mono text-xs">ФУТБОЛКИ</TabsTrigger>
+            <TabsTrigger value="shorts" className="font-mono text-xs">ШОРТЫ</TabsTrigger>
+            <TabsTrigger value="pants" className="font-mono text-xs">ШТАНЫ</TabsTrigger>
+            <TabsTrigger value="hoodies" className="font-mono text-xs">ХУДИ</TabsTrigger>
+            <TabsTrigger value="bio" className="font-mono text-xs">БИОГРАФИЯ</TabsTrigger>
+            <TabsTrigger value="about" className="font-mono text-xs">О_НАС</TabsTrigger>
+          </TabsList>
 
-        {/* Individual Punch Cards */}
-        <section className="mb-16">
-          <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-            <div className="flex gap-1">
-              {[...Array(4)].map((_, i) => (
-                <div key={i} className="w-2 h-2 punch-hole" />
+          {/* ALL */}
+          <TabsContent value="all">
+            <div className="space-y-8">
+              {products.map((cat) => (
+                <div key={cat.code}>
+                  <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                    <div className="flex gap-1">
+                      {[...Array(3)].map((_, i) => (
+                        <div key={i} className="w-1.5 h-1.5 punch-hole" />
+                      ))}
+                    </div>
+                    {cat.category}
+                  </h3>
+                  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {cat.items.map((item) => (
+                      <ProductCard key={item.num} item={item} />
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
-            КОЛОДА_ПРОГРАММ
-          </h2>
-          <div className="space-y-6">
-            <PunchCard
-              title="ПРИВЕТ_МИР.КАРТА"
-              content="10 ПЕЧАТЬ 'ПРИВЕТ, МИР!'"
-              cardNumber="0001"
-            />
-            <PunchCard
-              title="ОБРАБОТКА_ДАННЫХ.КАРТА"
-              content="20 ДЛЯ I = 1 ДО 100: ЧИТАТЬ ДАННЫЕ(I): ДАЛЕЕ I"
-              cardNumber="0002"
-            />
-            <PunchCard
-              title="ВЫВОД_РЕЗУЛЬТАТОВ.КАРТА"
-              content="30 ПЕЧАТЬ 'ВЫЧИСЛЕНИЕ ЗАВЕРШЕНО': КОНЕЦ"
-              cardNumber="0003"
-            />
-          </div>
-        </section>
+          </TabsContent>
+
+          {/* TSHIRTS */}
+          <TabsContent value="tshirts">
+            <ProductGrid items={products[0].items} />
+          </TabsContent>
+
+          {/* SHORTS */}
+          <TabsContent value="shorts">
+            <ProductGrid items={products[1].items} />
+          </TabsContent>
+
+          {/* PANTS */}
+          <TabsContent value="pants">
+            <ProductGrid items={products[2].items} />
+          </TabsContent>
+
+          {/* HOODIES */}
+          <TabsContent value="hoodies">
+            <ProductGrid items={products[3].items} />
+          </TabsContent>
+
+          {/* BIO */}
+          <TabsContent value="bio">
+            <Card className="border-2 border-primary/40 card-edge-holes p-8 bg-card/80 backdrop-blur-sm vintage-card">
+              <div className="flex gap-2 mb-6">
+                {[...Array(5)].map((_, i) => (
+                  <div key={i} className="w-2 h-2 punch-hole" />
+                ))}
+              </div>
+              <h2 className="text-2xl font-bold mb-6 tracking-wide">
+                {'>'} БИОГРАФИЯ
+              </h2>
+              <div className="font-mono text-sm bg-background/50 p-6 border border-border space-y-3">
+                <div className="flex gap-2">
+                  <span className="text-muted-foreground">ФИО:</span>
+                  <span className="font-bold">Веселков Алексей Сергеевич</span>
+                </div>
+                <div className="flex gap-2">
+                  <span className="text-muted-foreground">ДАТА_РОЖДЕНИЯ:</span>
+                  <span>24.02.2009</span>
+                </div>
+                <div className="mt-4 pt-4 border-t border-border text-muted-foreground text-xs">
+                  {'>'} ЗАПИСЬ_В_АРХИВЕ_MT_001
+                </div>
+              </div>
+            </Card>
+          </TabsContent>
+
+          {/* ABOUT */}
+          <TabsContent value="about">
+            <Card className="border-2 border-primary/40 card-edge-holes p-8 bg-card/80 backdrop-blur-sm vintage-card">
+              <div className="flex gap-2 mb-6">
+                {[...Array(5)].map((_, i) => (
+                  <div key={i} className="w-2 h-2 punch-hole" />
+                ))}
+              </div>
+              <h2 className="text-2xl font-bold mb-6 tracking-wide">
+                {'>'} О_НАС
+              </h2>
+              <div className="font-mono text-sm bg-background/50 p-6 border border-border space-y-4">
+                <div className="flex items-center gap-3">
+                  <Icon name="Send" size={16} />
+                  <span className="text-muted-foreground">ТЕЛЕГРАММ:</span>
+                  <a
+                    href="https://t.me/AeKSEy0"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-bold hover:underline"
+                  >
+                    @AeKSEy0
+                  </a>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Icon name="Users" size={16} />
+                  <span className="text-muted-foreground">ВК:</span>
+                  <a
+                    href="https://vk.com/id475497457"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-bold hover:underline"
+                  >
+                    vk.com/id475497457
+                  </a>
+                </div>
+                <div className="mt-4 pt-4 border-t border-border text-muted-foreground text-xs">
+                  {'>'} СВЯЗЬ_С_КОМАНДОЙ_MT
+                </div>
+              </div>
+            </Card>
+          </TabsContent>
+        </Tabs>
 
         {/* Footer */}
-        <footer className="border-t-4 border-primary/30 card-edge-holes pt-8 mt-16 text-center relative z-10">
+        <footer className="border-t-4 border-primary/30 card-edge-holes pt-8 mt-8 text-center relative z-10">
           <div className="flex justify-center gap-2 mb-3">
             {[...Array(7)].map((_, i) => (
               <div key={i} className="w-2 h-2 punch-hole" />
             ))}
           </div>
           <p className="text-sm text-muted-foreground font-mono">
-            RETRO_COMPUTE_МУЗЕЙ (c) 2024-2025
+            MASTER_OF_THE_TABLE (c) 2026
           </p>
           <p className="text-xs text-muted-foreground/70 mt-2">
-            {'>'} КОНЕЦ_КОЛОДЫ
+            {'>'} MT_OFFICIAL_END_OF_DECK
           </p>
         </footer>
       </main>
     </div>
+  )
+}
+
+function ProductGrid({ items }: { items: typeof products[0]['items'] }) {
+  return (
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {items.map((item) => (
+        <ProductCard key={item.num} item={item} />
+      ))}
+    </div>
+  )
+}
+
+function ProductCard({ item }: { item: { name: string; desc: string; price: string; num: string } }) {
+  return (
+    <Card className="border-2 border-primary/40 overflow-hidden bg-card vintage-card">
+      {/* Top holes */}
+      <div className="flex items-center border-b-2 border-primary/30 bg-muted/50 p-2">
+        <div className="flex gap-1.5 mr-3">
+          {[...Array(6)].map((_, i) => (
+            <div key={i} className="w-1.5 h-1.5 punch-hole shadow-inner" />
+          ))}
+        </div>
+        <span className="text-xs font-mono text-muted-foreground ml-auto">#{item.num}</span>
+      </div>
+
+      {/* MT Logo block */}
+      <div className="bg-primary/10 border-b border-primary/20 flex items-center justify-center py-8">
+        <div className="text-5xl font-black tracking-widest text-primary/80 border-4 border-primary/40 px-6 py-2">
+          MT
+        </div>
+      </div>
+
+      <div className="p-4">
+        <div className="font-mono text-xs font-bold mb-1 tracking-wide truncate">{item.name}</div>
+        <div className="text-xs text-muted-foreground mb-3 leading-relaxed">{item.desc}</div>
+        <div className="flex items-center justify-between">
+          <Badge variant="outline" className="font-mono text-sm font-bold border-primary/40">
+            {item.price}
+          </Badge>
+          <button className="text-xs font-mono bg-primary text-primary-foreground px-3 py-1 hover:bg-primary/80 transition-colors">
+            ЗАКАЗАТЬ
+          </button>
+        </div>
+      </div>
+
+      {/* Bottom holes */}
+      <div className="flex gap-1.5 p-2 border-t-2 border-primary/30 bg-muted/50 justify-center">
+        {[...Array(6)].map((_, i) => (
+          <div key={i} className="w-1.5 h-1.5 punch-hole shadow-inner" />
+        ))}
+      </div>
+    </Card>
   )
 }

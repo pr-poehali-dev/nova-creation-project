@@ -1,3 +1,7 @@
-# nova-creation-project
+# Виртуальный музей перфокарт
 
-Initial repository setup for pr-poehali-dev/nova-creation-project
+![Preview](https://cdn.poehali.dev/templates/perforated-card-ru/preview-ru.jpg)
+
+Ретро-лендинг в стиле эпохи перфокарт и ранних вычислительных машин. Визуально имитирует бумажные ленты с отверстиями, перфокарты IBM и интерфейсы мейнфреймов 1950-80-х годов. Включает анимированные компоненты перфокарт, сетку данных и моноширинный шрифт для аутентичной атмосферы.
+
+`"tags": ["landing", "dark", "retro", "brutalist", "developer", "animations"]`
